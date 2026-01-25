@@ -156,7 +156,7 @@ body {
     padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     position: relative;
     overflow: hidden;
 }
