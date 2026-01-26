@@ -29,7 +29,7 @@ class ThemeManager {
 
     updateThemeToggle() {
         const isDark = this.currentTheme === 'dark';
-        this.themeToggle.setAttribute('aria-label', 
+        this.themeToggle.setAttribute('aria-label',
             isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'
         );
     }
@@ -56,7 +56,7 @@ class ThemeManager {
             }
         `;
         document.head.appendChild(style);
-        
+
         setTimeout(() => {
             style.remove();
         }, 300);
@@ -64,7 +64,7 @@ class ThemeManager {
 
     bindEvents() {
         this.themeToggle.addEventListener('click', () => this.toggleTheme());
-        
+
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!this.getStoredTheme()) {
                 this.setTheme(e.matches ? 'dark' : 'light');
@@ -112,15 +112,12 @@ class AnimationManager {
         const skillItems = document.querySelectorAll('.skill-item');
         const socialBtns = document.querySelectorAll('.social-btn');
 
-        // Efeito 3D na imagem de perfil
         profileImage.addEventListener('mousemove', (e) => {
             const rect = profileImage.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
             const rotateX = (y / rect.height) * 15;
             const rotateY = (x / rect.width) * -15;
-            
             profileImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
         });
 
@@ -128,14 +125,12 @@ class AnimationManager {
             profileImage.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
         });
 
-        // Efeito ripple nos skill items
         skillItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 this.createRippleEffect(e, item);
             });
         });
 
-        // Efeito de brilho nos botões sociais
         socialBtns.forEach(btn => {
             btn.addEventListener('mouseenter', () => {
                 this.addShineEffect(btn);
@@ -149,12 +144,12 @@ class AnimationManager {
         const size = Math.max(rect.width, rect.height);
         const x = event.clientX - rect.left - size / 2;
         const y = event.clientY - rect.top - size / 2;
-        
+
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
-        
+
         if (!document.querySelector('#ripple-styles')) {
             const style = document.createElement('style');
             style.id = 'ripple-styles';
@@ -168,7 +163,6 @@ class AnimationManager {
                     pointer-events: none;
                     z-index: 1;
                 }
-                
                 @keyframes ripple-animation {
                     to {
                         transform: scale(4);
@@ -178,11 +172,11 @@ class AnimationManager {
             `;
             document.head.appendChild(style);
         }
-        
+
         element.style.position = 'relative';
         element.style.overflow = 'hidden';
         element.appendChild(ripple);
-        
+
         setTimeout(() => {
             ripple.remove();
         }, 600);
@@ -191,7 +185,7 @@ class AnimationManager {
     addShineEffect(element) {
         const shine = document.createElement('div');
         shine.classList.add('shine-effect');
-        
+
         if (!document.querySelector('#shine-styles')) {
             const style = document.createElement('style');
             style.id = 'shine-styles';
@@ -207,7 +201,6 @@ class AnimationManager {
                     pointer-events: none;
                     z-index: 1;
                 }
-                
                 @keyframes shine-animation {
                     0% { left: -100%; }
                     100% { left: 100%; }
@@ -215,11 +208,11 @@ class AnimationManager {
             `;
             document.head.appendChild(style);
         }
-        
+
         element.style.position = 'relative';
         element.style.overflow = 'hidden';
         element.appendChild(shine);
-        
+
         setTimeout(() => {
             shine.remove();
         }, 800);
@@ -228,7 +221,7 @@ class AnimationManager {
     addClickAnimations() {
         const socialBtns = document.querySelectorAll('.social-btn');
         const skillItems = document.querySelectorAll('.skill-item');
-        
+
         [...socialBtns, ...skillItems].forEach(element => {
             element.addEventListener('click', (e) => {
                 element.style.transform += ' scale(0.95)';
@@ -261,7 +254,6 @@ class AnimationManager {
                 transform: translateY(20px);
                 transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             }
-            
             .skill-item.animate-in,
             .stat-item.animate-in {
                 opacity: 1;
@@ -279,17 +271,15 @@ class AnimationManager {
 
     addParallaxEffect() {
         const profileCard = document.querySelector('.profile-card');
-        
+
         document.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
             const { innerWidth, innerHeight } = window;
-            
             const xPos = (clientX / innerWidth - 0.5) * 20;
             const yPos = (clientY / innerHeight - 0.5) * 20;
-            
             profileCard.style.transform = `perspective(1000px) rotateX(${yPos * 0.1}deg) rotateY(${xPos * 0.1}deg)`;
         });
-        
+
         document.addEventListener('mouseleave', () => {
             profileCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
         });
@@ -300,39 +290,59 @@ class AnimationManager {
 class ProfileManager {
     constructor() {
         this.profileData = {
-            name: 'João Silva',
-            role: 'Desenvolvedor Full Stack',
-            location: 'São Paulo, Brasil',
+            name: 'Marcos Gabriel Fernandes Vicente',
+            role: 'Desenvolvedor Front End',
+            location: 'Diadema, São Paulo',
             about: [
-                'Desenvolvedor apaixonado por tecnologia com mais de 5 anos de experiência em desenvolvimento web. Especializado em criar soluções inovadoras e eficientes utilizando as mais modernas tecnologias do mercado.',
-                'Sempre em busca de novos desafios e oportunidades para crescer profissionalmente, contribuindo para projetos que fazem a diferença.'
+                'Olá me chamo Gabriel Fernandes, sou um desenvolvedor apaixonado por tecnologia com apenas 4 anos de experiência em desenvolvimento web.',
+                'Sempre em busca de novos desafios e oportunidades para crescer profissionalmente em diversas áreas da tecnologia.'
             ],
             skills: [
                 { name: 'JavaScript', icon: 'JS' },
                 { name: 'React', icon: '⚛️' },
                 { name: 'Node.js', icon: '📦' },
-                { name: 'Python', icon: '🐍' },
+                // { name: 'Python', icon: '🐍' },
                 { name: 'TypeScript', icon: 'TS' },
                 { name: 'CSS3', icon: '🎨' }
             ],
             socialLinks: {
-                github: 'https://github.com',
+                github: 'https://github.com/Gabbfernyh',
                 linkedin: 'https://linkedin.com',
-                whatsapp: 'https://wa.me/5511999999999'
+                // whatsapp: 'https://wa.me/5511999999999'
             },
             stats: [
-                { number: '5+', label: 'Anos de Experiência' },
-                { number: '50+', label: 'Projetos Concluídos' },
+                { number: '4', label: 'Anos de Experiência' },
+                { number: '20+', label: 'Projetos Concluídos', id: 'github-projects' }, // Adicionado ID para alvo da API
                 { number: '100%', label: 'Dedicação' }
             ]
         };
         this.init();
     }
 
-    init() {
+    // Tornamos o init assíncrono para aguardar a API antes de animar
+    async init() {
         this.loadStoredData();
         this.setupImageUpload();
+
+        // INTEGRAÇÃO API GITHUB
+        await this.syncGithubRepos();
+
         this.addCounterAnimation();
+    }
+
+    // Novo método para sincronizar os dados reais
+    async syncGithubRepos() {
+        try {
+            const stats = await getGithubStats('Gabbfernyh');
+            const projectStat = document.getElementById('github-projects');
+            if (projectStat) {
+                projectStat.textContent = stats;
+                // Atualizamos o dado do objeto interno também
+                this.profileData.stats[1].number = stats;
+            }
+        } catch (e) {
+            console.warn("Usando valor padrão para projetos.");
+        }
     }
 
     loadStoredData() {
@@ -352,7 +362,7 @@ class ProfileManager {
         if (nameEl) nameEl.textContent = this.profileData.name;
         if (roleEl) roleEl.textContent = this.profileData.role;
         if (locationEl) locationEl.textContent = this.profileData.location;
-        
+
         if (aboutEls.length >= 2) {
             aboutEls[0].textContent = this.profileData.about[0];
             aboutEls[1].textContent = this.profileData.about[1];
@@ -361,7 +371,7 @@ class ProfileManager {
 
     setupImageUpload() {
         const profileImg = document.getElementById('profileImg');
-        
+
         profileImg.addEventListener('dragover', (e) => {
             e.preventDefault();
             profileImg.style.opacity = '0.7';
@@ -374,7 +384,6 @@ class ProfileManager {
         profileImg.addEventListener('drop', (e) => {
             e.preventDefault();
             profileImg.style.opacity = '1';
-            
             const files = e.dataTransfer.files;
             if (files.length > 0 && files[0].type.startsWith('image/')) {
                 this.handleImageUpload(files[0]);
@@ -394,26 +403,26 @@ class ProfileManager {
 
     addCounterAnimation() {
         const statNumbers = document.querySelectorAll('.stat-number');
-        
+
         const animateCounter = (element, target) => {
             const isPercentage = target.includes('%');
             const isPlus = target.includes('+');
             const numericValue = parseInt(target.replace(/[^\d]/g, ''));
-            
+
             let current = 0;
             const increment = numericValue / 50;
-            
+
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= numericValue) {
                     current = numericValue;
                     clearInterval(timer);
                 }
-                
+
                 let displayValue = Math.floor(current);
                 if (isPercentage) displayValue += '%';
                 if (isPlus && current >= numericValue) displayValue += '+';
-                
+
                 element.textContent = displayValue;
             }, 30);
         };
@@ -436,33 +445,8 @@ class ProfileManager {
     }
 }
 
-// Utilitários
+// Utilitários e Inicialização permanecem os mesmos...
 class Utils {
-    static debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    static throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        };
-    }
-
     static copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
             this.showNotification('Link copiado para a área de transferência!');
@@ -473,49 +457,22 @@ class Utils {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
         notification.textContent = message;
-        
+
         if (!document.querySelector('#notification-styles')) {
             const style = document.createElement('style');
             style.id = 'notification-styles';
             style.textContent = `
                 .notification {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    padding: 12px 24px;
-                    border-radius: 12px;
-                    color: white;
-                    font-weight: 500;
-                    font-size: 14px;
-                    z-index: 1000;
-                    animation: slideInRight 0.3s ease;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    position: fixed; top: 20px; right: 20px; padding: 12px 24px;
+                    border-radius: 12px; color: white; font-weight: 500; z-index: 1000;
+                    animation: slideInRight 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
                 }
-                
-                .notification.success {
-                    background: linear-gradient(135deg, #10b981, #059669);
-                }
-                
-                .notification.error {
-                    background: linear-gradient(135deg, #ef4444, #dc2626);
-                }
-                
-                @keyframes slideInRight {
-                    from {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
+                .notification.success { background: linear-gradient(135deg, #10b981, #059669); }
+                @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
             `;
             document.head.appendChild(style);
         }
-        
         document.body.appendChild(notification);
-        
         setTimeout(() => {
             notification.style.animation = 'slideInRight 0.3s ease reverse';
             setTimeout(() => notification.remove(), 300);
@@ -523,84 +480,9 @@ class Utils {
     }
 }
 
-// Inicialização
+// Inicialização Final
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
     new AnimationManager();
     new ProfileManager();
-    
-    addKeyboardNavigation();
-    addContextMenuFeatures();
-    setupPerformanceOptimizations();
 });
-
-// Navegação por teclado
-function addKeyboardNavigation() {
-    document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'T') {
-            e.preventDefault();
-            document.getElementById('themeToggle').click();
-        }
-        
-        const socialBtns = Array.from(document.querySelectorAll('.social-btn'));
-        const currentFocus = document.activeElement;
-        const currentIndex = socialBtns.indexOf(currentFocus);
-        
-        if (currentIndex !== -1) {
-            let nextIndex;
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                nextIndex = (currentIndex + 1) % socialBtns.length;
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                nextIndex = currentIndex === 0 ? socialBtns.length - 1 : currentIndex - 1;
-            }
-            
-            if (nextIndex !== undefined) {
-                socialBtns[nextIndex].focus();
-            }
-        }
-    });
-}
-
-// Menu de contexto
-function addContextMenuFeatures() {
-    document.querySelectorAll('.social-btn').forEach(btn => {
-        btn.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            Utils.copyToClipboard(btn.href);
-        });
-    });
-}
-
-// Otimizações de performance
-function setupPerformanceOptimizations() {
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        document.querySelectorAll('img').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-    
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const style = document.createElement('style');
-        style.textContent = `
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}

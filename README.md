@@ -3,9 +3,11 @@
 Este repositório contém o código do meu cartão de visitas digital, onde centralizo minhas principais tecnologias, redes sociais e um breve resumo da minha trajetória profissional.
 
 ## 👤 Sobre Mim
+
 Olá, me chamo **Gabriel Fernandes**, sou um desenvolvedor apaixonado por tecnologia com **4 anos de experiência** em desenvolvimento web. Sou especializado em criar soluções inovadoras, eficientes e otimizadas, utilizando as tecnologias mais modernas do mercado.
 
 ### 🛠️ Principais Tecnologias
+
 * **JavaScript**
 * **React**
 * **HTML5 & CSS3**
@@ -17,12 +19,14 @@ Olá, me chamo **Gabriel Fernandes**, sou um desenvolvedor apaixonado por tecnol
 ---
 
 ### Tecnologias Utilizadas
+
 * **Javascript**
 * **HTML & CSS**
 * **Bootstrap**
 * **API do Github**
 
 ## ✒️ Créditos e Reconhecimento
+
 Este projeto é uma **personalização e configuração pessoal** realizada a partir de um clone do projeto original.
 
 * **Autor Original:** [Lucas Coutinho (Lcoutinho22)](https://github.com/Lcoutinho22)
@@ -33,6 +37,7 @@ Este projeto é uma **personalização e configuração pessoal** realizada a pa
 ---
 
 ## 📊 Estatísticas e Metas
+
 * **4 Anos de Experiência**
 * **20+ Projetos Concluídos**
 * **100% Dedicação**
@@ -40,6 +45,7 @@ Este projeto é uma **personalização e configuração pessoal** realizada a pa
 ---
 
 ## 🔗 Conecte-se comigo
+
 * **GitHub:** [Gabbfernyh](https://github.com/Gabbfernyh)
 * **LinkedIn:** [Gabriel Fernandes](https://linkedin.com/in/GabbFernyh)
 * **Discord:** Gabbfernyh
