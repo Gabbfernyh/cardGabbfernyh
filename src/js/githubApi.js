@@ -1,17 +1,26 @@
 // Arquivo: api-github.js
-// Arquivo da API (Integrado conforme solicitado)
+// Lê estatísticas locais geradas pelo GitHub Actions
 const username = 'Gabbfernyh';
 
-async function getGithubStats(username) {
+async function getGithubStats() {
     try {
-        const response = await fetch(`https://api.github.com/users/${username}`);
-        if (!response.ok) throw new Error('Falha ao consultar API');
+        const response = await fetch('src/data/github-stats.json', {
+            cache: 'no-store'
+        });
+
+        if (!response.ok) {
+            throw new Error(`Falha ao carregar github-stats.json: ${response.status}`);
+        }
+
         const data = await response.json();
-        const totalRepos = data.public_repos;
-        const roundedRepos = Math.floor(totalRepos / 10) * 10;
-        return `${roundedRepos}+`;
+
+        if (typeof data.repos !== 'number') {
+            throw new Error('Campo repos invalido em github-stats.json');
+        }
+
+        return String(data.repos);
     } catch (error) {
-        console.error("Erro na API do GitHub:", error);
-        return "20+";
+        console.error('Erro ao carregar estatisticas locais:', error);
+        return null;
     }
 }

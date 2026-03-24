@@ -28,6 +28,8 @@ class ThemeManager {
     }
 
     updateThemeToggle() {
+        if (!this.themeToggle) return;
+
         const isDark = this.currentTheme === 'dark';
         this.themeToggle.setAttribute('aria-label',
             isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'
@@ -41,7 +43,11 @@ class ThemeManager {
     }
 
     addToggleAnimation() {
+        if (!this.themeToggle) return;
+
         const thumb = this.themeToggle.querySelector('.toggle-thumb');
+        if (!thumb) return;
+
         thumb.style.transform += ' scale(0.9)';
         setTimeout(() => {
             thumb.style.transform = thumb.style.transform.replace(' scale(0.9)', '');
@@ -63,6 +69,8 @@ class ThemeManager {
     }
 
     bindEvents() {
+        if (!this.themeToggle) return;
+
         this.themeToggle.addEventListener('click', () => this.toggleTheme());
 
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
@@ -73,7 +81,89 @@ class ThemeManager {
     }
 }
 
-// Gerenciamento de animações e interações
+
+class AvatarCarousel {
+    constructor() {
+        this.root = document.querySelector('[data-avatar-carousel]');
+        if (!this.root) return;
+
+        this.slides = Array.from(this.root.querySelectorAll('[data-avatar-slide]'));
+        this.interval = Number(this.root.dataset.interval) || 5000;
+        this.activeIndex = Math.max(this.slides.findIndex((slide) => slide.classList.contains('is-active')), 0);
+        this.progressFrame = null;
+        this.startedAt = 0;
+        this.elapsedBeforePause = 0;
+
+        this.init();
+    }
+
+    init() {
+        if (this.slides.length <= 1) {
+            this.root.classList.add('is-single');
+            this.root.style.setProperty('--avatar-progress', '100');
+            return;
+        }
+
+        this.bindEvents();
+        this.start();
+    }
+
+    bindEvents() {
+        this.root.addEventListener('mouseenter', () => this.stop());
+        this.root.addEventListener('mouseleave', () => this.start());
+    }
+
+    start() {
+        this.stop(false);
+        this.startedAt = performance.now() - this.elapsedBeforePause;
+
+        const tick = (now) => {
+            const elapsed = now - this.startedAt;
+            const progress = Math.min((elapsed / this.interval) * 100, 100);
+            this.root.style.setProperty('--avatar-progress', progress.toFixed(2));
+
+            if (elapsed >= this.interval) {
+                this.showNextSlide();
+                this.startedAt = now;
+                this.elapsedBeforePause = 0;
+                this.root.style.setProperty('--avatar-progress', '0');
+            }
+
+            this.progressFrame = requestAnimationFrame(tick);
+        };
+
+        this.progressFrame = requestAnimationFrame(tick);
+    }
+
+    stop(rememberProgress = true) {
+        if (this.progressFrame) {
+            if (rememberProgress) {
+                this.elapsedBeforePause = Math.min(performance.now() - this.startedAt, this.interval);
+            }
+            cancelAnimationFrame(this.progressFrame);
+            this.progressFrame = null;
+        }
+    }
+
+    showNextSlide() {
+        const currentSlide = this.slides[this.activeIndex];
+        const nextIndex = (this.activeIndex + 1) % this.slides.length;
+        const nextSlide = this.slides[nextIndex];
+
+        currentSlide.classList.remove('is-active');
+        currentSlide.classList.add('is-leaving');
+
+        nextSlide.classList.remove('is-leaving');
+        nextSlide.classList.add('is-active');
+
+        setTimeout(() => {
+            currentSlide.classList.remove('is-leaving');
+        }, 900);
+
+        this.activeIndex = nextIndex;
+    }
+}
+// Gerenciamento de animacoes e interacoes
 class AnimationManager {
     constructor() {
         this.init();
@@ -108,22 +198,30 @@ class AnimationManager {
     }
 
     addHoverEffects() {
-        const profileImage = document.querySelector('.profile-avatar img');
+        const profileAvatar = document.querySelector('.profile-avatar');
         const skillItems = document.querySelectorAll('.skill-item');
         const socialBtns = document.querySelectorAll('.social-btn');
 
-        profileImage.addEventListener('mousemove', (e) => {
-            const rect = profileImage.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const rotateX = (y / rect.height) * 15;
-            const rotateY = (x / rect.width) * -15;
-            profileImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-        });
+        if (profileAvatar) {
+            profileAvatar.addEventListener('mousemove', (e) => {
+                const activeImage = profileAvatar.querySelector('.avatar-slide.is-active .avatar-image');
+                if (!activeImage) return;
 
-        profileImage.addEventListener('mouseleave', () => {
-            profileImage.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-        });
+                const rect = profileAvatar.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateX = (y / rect.height) * 12;
+                const rotateY = (x / rect.width) * -14;
+
+                activeImage.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1)`;
+            });
+
+            profileAvatar.addEventListener('mouseleave', () => {
+                profileAvatar.querySelectorAll('.avatar-image').forEach((image) => {
+                    image.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+                });
+            });
+        }
 
         skillItems.forEach(item => {
             item.addEventListener('click', (e) => {
@@ -312,7 +410,7 @@ class ProfileManager {
             },
             stats: [
                 { number: '4', label: 'Anos de Experiência' },
-                { number: '20+', label: 'Projetos Concluídos', id: 'github-projects' }, // Adicionado ID para alvo da API
+                { number: '0', label: 'Projetos Concluídos', id: 'github-projects' },
                 { number: '100%', label: 'Dedicação' }
             ]
         };
@@ -333,9 +431,9 @@ class ProfileManager {
     // Novo método para sincronizar os dados reais
     async syncGithubRepos() {
         try {
-            const stats = await getGithubStats('Gabbfernyh');
+            const stats = await getGithubStats(username);
             const projectStat = document.getElementById('github-projects');
-            if (projectStat) {
+            if (projectStat && stats !== null) {
                 projectStat.textContent = stats;
                 // Atualizamos o dado do objeto interno também
                 this.profileData.stats[1].number = stats;
@@ -371,6 +469,7 @@ class ProfileManager {
 
     setupImageUpload() {
         const profileImg = document.getElementById('profileImg');
+        if (!profileImg) return;
 
         profileImg.addEventListener('dragover', (e) => {
             e.preventDefault();
@@ -405,9 +504,14 @@ class ProfileManager {
         const statNumbers = document.querySelectorAll('.stat-number');
 
         const animateCounter = (element, target) => {
-            const isPercentage = target.includes('%');
-            const isPlus = target.includes('+');
-            const numericValue = parseInt(target.replace(/[^\d]/g, ''));
+            const normalizedTarget = String(target).trim();
+            const isPercentage = normalizedTarget.includes('%');
+            const numericValue = parseInt(normalizedTarget.replace(/[^\d]/g, ''), 10);
+
+            if (Number.isNaN(numericValue)) {
+                element.textContent = normalizedTarget;
+                return;
+            }
 
             let current = 0;
             const increment = numericValue / 50;
@@ -421,7 +525,6 @@ class ProfileManager {
 
                 let displayValue = Math.floor(current);
                 if (isPercentage) displayValue += '%';
-                if (isPlus && current >= numericValue) displayValue += '+';
 
                 element.textContent = displayValue;
             }, 30);
@@ -483,6 +586,8 @@ class Utils {
 // Inicialização Final
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
+    new AvatarCarousel();
     new AnimationManager();
     new ProfileManager();
 });
+
