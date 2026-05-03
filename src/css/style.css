@@ -727,3 +727,58 @@ body {
         color: #333 !important;
     }
 }
+ 
+ 
+ /* Card Sobre */
+ .about-card {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 1.4rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: grid;
+    gap: 1rem;
+}
+
+.about-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+.about-card p {
+    color: var(--text-soft);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.about-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+.about-highlights li {
+    background: rgba(37, 37, 37, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 10px;
+    padding: 0.8rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 0.9rem;
+    color: var(--text-soft);
+}
+
+ .about-highlights li::before {
+     content: "✓";
+     color: var(--primary);
+     font-weight: bold;
+     font-size: 1.1rem;
+     flex-shrink: 0;
+ }
