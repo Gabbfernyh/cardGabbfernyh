@@ -71,7 +71,7 @@ function wireCopyButtons() {
                 await navigator.clipboard.writeText(value);
                 showToast("Copiado com sucesso");
             } catch (err) {
-                showToast("Nao foi possivel copiar");
+                showToast("Não foi possível copiar");
             }
         });
     });
@@ -81,28 +81,41 @@ function wireForm() {
     const form = document.getElementById("quoteForm");
     if (!form) return;
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const submitButton = form.querySelector('button[type="submit"]');
         const data = new FormData(form);
-        const nome = data.get("nome");
-        const contato = data.get("contato");
-        const servico = data.get("servico");
-        const objetivo = data.get("objetivo");
 
-        const text = [
-            "Ola, Gabriel! Quero solicitar uma proposta.",
-            `Nome: ${nome}`,
-            `Contato: ${contato}`,
-            `Servico: ${servico}`,
-            `Objetivo: ${objetivo}`,
-        ].join("\n");
+        if (submitButton) submitButton.disabled = true;
 
-        const phone = "5511999999999";
-        const link = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-        window.open(link, "_blank", "noopener,noreferrer");
-        showToast("Formulario enviado para WhatsApp");
-        form.reset();
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (!response.ok) throw new Error("Falha no envio");
+
+            showToast("Formulário enviado com sucesso");
+            form.reset();
+        } catch (err) {
+            showToast("Não foi possível enviar o formulário");
+        } finally {
+            if (submitButton) submitButton.disabled = false;
+        }
+    });
+}
+
+function wireProjectPlaceholders() {
+    document.querySelectorAll(".project-link-placeholder").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            showToast("Adicione a URL real deste projeto para liberar o acesso");
+        });
     });
 }
 
@@ -122,5 +135,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll("[data-slider]").forEach((el) => new HorizontalSlider(el));
     await syncGithubProjects();
     wireCopyButtons();
+    wireProjectPlaceholders();
     wireForm();
 });
