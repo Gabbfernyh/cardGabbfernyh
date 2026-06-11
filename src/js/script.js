@@ -54,6 +54,15 @@ class HorizontalSlider {
     }
 }
 
+const PROJECT_THUMB_BG = {
+    portfolio:
+        'linear-gradient(140deg, rgba(8, 12, 20, 0.18), rgba(8, 12, 20, 0.42)), url("../assets/img/projects/portifolio-Preto&Branco.png") center/cover no-repeat',
+    commerce:
+        'linear-gradient(140deg, rgba(8, 12, 20, 0.2), rgba(8, 12, 20, 0.45)), url("../assets/img/projects/prev-BurguerHouse.png") center/cover no-repeat',
+    landing:
+        'linear-gradient(140deg, rgba(8, 12, 20, 0.16), rgba(8, 12, 20, 0.4)), url("../assets/img/projects/prev-FOODJP.png") center/cover no-repeat',
+};
+
 async function syncGithubProjects() {
     const target = document.getElementById("github-projects");
     if (!target || typeof getGithubStats !== "function") return;
@@ -119,6 +128,38 @@ function wireProjectPlaceholders() {
     });
 }
 
+function wireLazyProjectThumbs() {
+    const thumbs = document.querySelectorAll("[data-thumb]");
+    if (!thumbs.length) return;
+
+    const applyThumb = (thumb) => {
+        const key = thumb.dataset.thumb;
+        const bg = PROJECT_THUMB_BG[key];
+        if (!bg || thumb.dataset.thumbLoaded === "true") return;
+
+        thumb.style.setProperty("--thumb-bg", bg);
+        thumb.dataset.thumbLoaded = "true";
+    };
+
+    if (!("IntersectionObserver" in window)) {
+        thumbs.forEach(applyThumb);
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                applyThumb(entry.target);
+                observer.unobserve(entry.target);
+            });
+        },
+        { rootMargin: "200px 0px" }
+    );
+
+    thumbs.forEach((thumb) => observer.observe(thumb));
+}
+
 function showToast(message) {
     const toast = document.createElement("div");
     toast.className = "toast";
@@ -134,6 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     new AvatarCarousel();
     document.querySelectorAll("[data-slider]").forEach((el) => new HorizontalSlider(el));
     await syncGithubProjects();
+    wireLazyProjectThumbs();
     wireCopyButtons();
     wireProjectPlaceholders();
     wireForm();

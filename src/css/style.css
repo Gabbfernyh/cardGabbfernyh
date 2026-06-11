@@ -381,10 +381,13 @@ h4 {
     display: grid;
     gap: 0.9rem;
     grid-auto-rows: max-content;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
     transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 540px;
 }
 
 .service-card {
@@ -408,8 +411,7 @@ h4 {
 .project-card:hover {
     transform: translateY(-8px) scale(1.01);
     border-color: rgba(59, 130, 246, 0.42);
-    box-shadow: 0 24px 44px rgba(0, 0, 0, 0.4);
-    filter: saturate(1.05);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
 }
 
 .story-card {
@@ -647,8 +649,7 @@ h4 {
 .project-thumb:hover::before,
 .project-card:focus-within .project-thumb::before {
     transform: scale(1.04);
-    filter: blur(2.8px) saturate(0.88);
-    opacity: 0.56;
+    opacity: 0.72;
 }
 
 .project-thumb:hover::after,
@@ -659,25 +660,32 @@ h4 {
 .project-thumb-alt {
     --thumb-bg:
         linear-gradient(140deg, rgba(8, 12, 20, 0.16), rgba(8, 12, 20, 0.46)),
-        url("../assets/img/profileImg.jpeg") center/cover no-repeat;
+        radial-gradient(circle at 30% 18%, rgba(96, 165, 250, 0.18), transparent 24%),
+        radial-gradient(circle at 74% 70%, rgba(123, 216, 143, 0.14), transparent 24%),
+        linear-gradient(135deg, rgba(12, 18, 28, 0.94), rgba(8, 12, 20, 0.98));
 }
 
 .project-thumb-third {
     --thumb-bg:
         linear-gradient(140deg, rgba(8, 12, 20, 0.18), rgba(8, 12, 20, 0.42)),
-        url("../assets/img/projects/portifolio-Preto&Branco.png") center/cover no-repeat;
+        radial-gradient(circle at 28% 18%, rgba(96, 165, 250, 0.18), transparent 28%),
+        linear-gradient(135deg, rgba(12, 18, 28, 0.94), rgba(8, 12, 20, 0.98));
 }
 
 .project-thumb-commerce {
     --thumb-bg:
         linear-gradient(140deg, rgba(8, 12, 20, 0.2), rgba(8, 12, 20, 0.45)),
-        url("../assets/img/projects/prev-BurguerHouse.png") center/cover no-repeat;
+        radial-gradient(circle at 25% 18%, rgba(34, 197, 94, 0.24), transparent 24%),
+        radial-gradient(circle at 78% 28%, rgba(59, 130, 246, 0.22), transparent 26%),
+        linear-gradient(140deg, rgba(18, 24, 38, 0.96), rgba(8, 12, 20, 0.98));
 }
 
 .project-thumb-landing {
     --thumb-bg:
         linear-gradient(140deg, rgba(8, 12, 20, 0.16), rgba(8, 12, 20, 0.4)),
-        url("../assets/img/projects/prev-FOODJP.png") center/cover no-repeat;
+        radial-gradient(circle at 22% 20%, rgba(251, 191, 36, 0.24), transparent 22%),
+        radial-gradient(circle at 74% 24%, rgba(56, 189, 248, 0.22), transparent 26%),
+        linear-gradient(135deg, rgba(13, 18, 32, 0.98), rgba(7, 10, 18, 0.98));
 }
 
 .project-link-placeholder {
@@ -716,6 +724,7 @@ h4 {
 .project-card > .col-span-full {
     width: 100%;
     display: block;
+    content-visibility: visible;
 }
 
 .project-card > .col-span-full > div {
