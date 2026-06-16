@@ -6,7 +6,7 @@
 
 :root {
     --bg-main: #0a0a0a;
-    --bg-panel: #1a1a1a;
+    --bg-panel: #141b27;
     --bg-soft: #252525;
     --stroke: #404040;
     --text-main: #f5f5f5;
@@ -16,7 +16,7 @@
     --primary-strong: #2563eb;
     --highlight: #60a5fa;
     --danger: #ff8e73;
-    --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 14px 28px rgba(0, 0, 0, 0.3);
     --radius-lg: 24px;
     --radius-md: 16px;
     --radius-sm: 12px;
@@ -24,18 +24,14 @@
 
 html,
 body {
-    scroll-behavior: smooth;
+    min-height: 100%;
 }
 
 body {
     min-height: 100vh;
     font-family: "Manrope", sans-serif;
     color: var(--text-main);
-    background:
-        radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.14), transparent 42%),
-        radial-gradient(circle at 88% 16%, rgba(96, 165, 250, 0.12), transparent 35%),
-        radial-gradient(circle at 50% 100%, rgba(37, 99, 235, 0.08), transparent 42%),
-        linear-gradient(180deg, #08111f 0%, #101826 42%, #0a0f18 100%);
+    background: linear-gradient(180deg, #08111f 0%, #101826 100%);
     padding: 1.2rem;
 }
 
@@ -59,12 +55,10 @@ h4 {
 .profile-rail {
     position: sticky;
     top: 1rem;
-    background:
-        radial-gradient(circle at top, rgba(96, 165, 250, 0.12), transparent 34%),
-        rgba(18, 23, 36, 0.9);
-    border: 1px solid rgba(120, 170, 255, 0.16);
+    background: rgba(18, 23, 36, 0.96);
+    border: 1px solid rgba(120, 170, 255, 0.12);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
     padding: 1.5rem;
     display: grid;
     gap: 1.2rem;
@@ -191,12 +185,10 @@ h4 {
 
 .hero-panel,
 .section-block {
-    background:
-        radial-gradient(circle at top right, rgba(96, 165, 250, 0.08), transparent 26%),
-        rgba(15, 19, 30, 0.88);
-    border: 1px solid rgba(120, 170, 255, 0.12);
+    background: rgba(15, 19, 30, 0.95);
+    border: 1px solid rgba(120, 170, 255, 0.08);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
     padding: 1.4rem;
 }
 
@@ -275,9 +267,8 @@ h4 {
 }
 
 .choice-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(59, 130, 246, 0.45);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.35);
     background: rgba(38, 42, 52, 0.98);
 }
 
@@ -319,14 +310,13 @@ h4 {
 }
 
 .slider-track {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(300px, calc(36% - 0.55rem));
+    display: flex;
     gap: 0.9rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     padding-block: 0.35rem;
+    overscroll-behavior-x: contain;
 }
 
 .slider-track::-webkit-scrollbar {
@@ -334,6 +324,7 @@ h4 {
 }
 
 .slider-track>* {
+    flex: 0 0 min(320px, 86%);
     scroll-snap-align: start;
 }
 
@@ -351,8 +342,8 @@ h4 {
 .slider-arrow:hover {
     background: rgba(37, 37, 37, 0.8);
     border-color: var(--primary);
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .service-card,
@@ -361,19 +352,14 @@ h4 {
     overflow: hidden;
     min-height: 100%;
     background: rgba(32, 35, 44, 0.94);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     padding: 1.55rem;
     display: grid;
     gap: 0.9rem;
     grid-auto-rows: max-content;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    contain: content;
-    content-visibility: auto;
-    contain-intrinsic-size: 0 540px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .service-card {
@@ -395,9 +381,8 @@ h4 {
 
 .service-card:hover,
 .project-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    border-color: rgba(96, 165, 250, 0.34);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26);
+    transform: translateY(-3px);
+    border-color: rgba(96, 165, 250, 0.24);
 }
 
 .story-card {
@@ -593,50 +578,39 @@ h4 {
 .project-thumb {
     --thumb-bg:
         linear-gradient(140deg, rgba(8, 12, 20, 0.12), rgba(8, 12, 20, 0.42)),
-        radial-gradient(circle at 20% 18%, rgba(96, 165, 250, 0.18), transparent 26%),
-        linear-gradient(135deg, rgba(10, 14, 22, 0.88), rgba(8, 12, 20, 0.98));
+        url("../assets/img/projects/portifolio-Preto&Branco.png") center/cover no-repeat;
     position: relative;
     isolation: isolate;
     overflow: hidden;
     height: 240px;
     border-radius: 22px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(10, 14, 22, 0.84);
-    box-shadow: inset 0 -24px 48px rgba(0, 0, 0, 0.24);
+    background: rgba(10, 14, 22, 0.88);
+    box-shadow: inset 0 -12px 24px rgba(0, 0, 0, 0.16);
     margin-bottom: 0.4rem;
 }
 
-.project-thumb::before,
+.project-thumb::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--thumb-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+}
+
 .project-thumb::after {
     content: "";
     position: absolute;
     inset: 0;
-    transition: opacity 0.28s ease, transform 0.28s ease, filter 0.28s ease;
-}
-
-.project-thumb::before {
-    z-index: 0;
-    background: var(--thumb-bg);
-    background-size: cover;
-    background-position: center;
-}
-
-.project-thumb::after {
-    z-index: 1;
-    background:
-        radial-gradient(circle at center, rgba(8, 12, 20, 0.06) 0%, rgba(8, 12, 20, 0.22) 34%, rgba(8, 12, 20, 0.62) 100%);
-    opacity: 0.16;
+    background: rgba(8, 12, 20, 0.2);
+    pointer-events: none;
 }
 
 .project-thumb:hover::before,
 .project-card:focus-within .project-thumb::before {
-    transform: scale(1.04);
-    opacity: 0.72;
-}
-
-.project-thumb:hover::after,
-.project-card:focus-within .project-thumb::after {
-    opacity: 0.78;
+    opacity: 0.84;
 }
 
 .project-thumb-alt {
@@ -703,13 +677,12 @@ h4 {
     background: rgba(37, 37, 37, 0.55);
 }
 
-.project-card > .col-span-full {
+.project-card>.col-span-full {
     width: 100%;
     display: block;
-    content-visibility: visible;
 }
 
-.project-card > .col-span-full > div {
+.project-card>.col-span-full>div {
     width: 100%;
     min-height: 100%;
     display: flex;
@@ -717,21 +690,18 @@ h4 {
     justify-content: center;
     padding: 1.5rem 1.25rem !important;
     border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background:
-        linear-gradient(180deg, rgba(10, 14, 22, 0.88), rgba(13, 18, 30, 0.96)),
-        radial-gradient(circle at top, rgba(96, 165, 250, 0.12), transparent 35%);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(15, 18, 26, 0.95);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    transition: transform 0.22s ease, border-color 0.22s ease;
 }
 
-.project-card:hover > .col-span-full > div {
-    transform: translateY(-4px);
-    border-color: rgba(96, 165, 250, 0.28);
-    box-shadow: 0 24px 44px rgba(0, 0, 0, 0.36);
+.project-card:hover>.col-span-full>div {
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, 0.22);
 }
 
-.project-card > .col-span-full > div > div {
+.project-card>.col-span-full>div>div {
     width: 100%;
     max-width: 28rem;
     display: flex;
@@ -742,7 +712,7 @@ h4 {
     text-align: center;
 }
 
-.project-card > .col-span-full h3 {
+.project-card>.col-span-full h3 {
     margin: 0;
     color: var(--text-main);
     font-family: "Sora", sans-serif;
@@ -750,28 +720,28 @@ h4 {
     line-height: 1.12;
 }
 
-.project-card > .col-span-full p {
+.project-card>.col-span-full p {
     margin: 0;
     color: var(--text-muted);
     line-height: 1.6;
     font-size: 0.92rem;
 }
 
-.project-card > .col-span-full p + p {
+.project-card>.col-span-full p+p {
     margin-top: 0.15rem;
 }
 
-.project-card > .col-span-full p:last-of-type {
+.project-card>.col-span-full p:last-of-type {
     margin-top: 0;
 }
 
-.project-card > .col-span-full svg {
+.project-card>.col-span-full svg {
     width: 2rem;
     height: 2rem;
     color: #7bd88f;
 }
 
-.project-card > .col-span-full > div > div > div:first-child {
+.project-card>.col-span-full>div>div>div:first-child {
     width: 4rem;
     height: 4rem;
     display: grid;
@@ -781,7 +751,7 @@ h4 {
     border: 1px solid rgba(123, 216, 143, 0.2);
 }
 
-.project-card > .col-span-full a {
+.project-card>.col-span-full a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -798,7 +768,7 @@ h4 {
     transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, color 0.22s ease;
 }
 
-.project-card > .col-span-full a:hover {
+.project-card>.col-span-full a:hover {
     transform: translateY(-1px);
     border-color: rgba(96, 165, 250, 0.48);
     background: rgba(96, 165, 250, 0.18);
@@ -953,7 +923,6 @@ h4 {
 
 .btn:hover {
     transform: translateY(-1px);
-    filter: brightness(1.04);
 }
 
 .btn-solid {
@@ -1063,6 +1032,14 @@ h4 {
     .faq-item summary {
         padding-right: 2.8rem;
     }
+
+    .slider-track {
+        gap: 0.75rem;
+    }
+
+    .slider-track>* {
+        flex: 0 0 86%;
+    }
 }
 
 /* Card Sobre */
@@ -1119,9 +1096,7 @@ h4 {
 .about-card {
     position: relative;
     overflow: hidden;
-    background:
-        radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 32%),
-        rgba(20, 22, 28, 0.96);
+    background: rgba(20, 22, 28, 0.95);
     padding: 1.5rem;
     gap: 1.2rem;
 }
@@ -1130,7 +1105,7 @@ h4 {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 38%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 40%);
     pointer-events: none;
 }
 
@@ -1261,6 +1236,7 @@ h4 {
 }
 
 @media (max-width: 900px) {
+
     .about-layout,
     .about-highlights {
         grid-template-columns: 1fr;
@@ -1295,9 +1271,7 @@ h4 {
 .footer-block {
     position: relative;
     overflow: hidden;
-    background:
-        radial-gradient(circle at left top, rgba(96, 165, 250, 0.12), transparent 28%),
-        rgba(15, 15, 15, 0.78);
+    background: rgba(15, 15, 15, 0.92);
 }
 
 .footer-block::before {
@@ -1305,7 +1279,7 @@ h4 {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 40%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent 40%);
 }
 
 .form-shell {
@@ -1379,9 +1353,9 @@ h4 {
 
 .form-panel {
     padding: 1.4rem;
-    background: rgba(9, 13, 22, 0.62);
+    background: rgba(9, 13, 22, 0.76);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
     display: grid;
     gap: 1rem;
 }
@@ -1402,7 +1376,7 @@ h4 {
     gap: 0.45rem;
 }
 
-.quote-form label > span {
+.quote-form label>span {
     color: var(--text-main);
     font-size: 0.84rem;
     font-weight: 600;
@@ -1502,6 +1476,7 @@ h4 {
 }
 
 @media (max-width: 640px) {
+
     .form-intro,
     .form-panel {
         padding: 1rem;
