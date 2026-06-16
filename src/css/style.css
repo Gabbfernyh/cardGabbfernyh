@@ -104,11 +104,12 @@ h4 {
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 0.65s ease;
+    visibility: hidden;
 }
 
 .avatar-slide.is-active {
     opacity: 1;
+    visibility: visible;
 }
 
 .avatar-image {
@@ -1502,4 +1503,16 @@ h4 {
     line-height: 1.5;
     text-align: center;
     margin: 0;
+}
+
+/* Prevent flash-of-invisible-text (FOIT) and ensure typographic elements
+   are visible immediately during load/scroll. This overrides any
+   accidental opacity/visibility transitions that hide text. */
+h1, h2, h3, h4, h5, h6,
+p, span, a, strong, em, small, label, li,
+button, input, textarea, select {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+    color: inherit !important;
 }
