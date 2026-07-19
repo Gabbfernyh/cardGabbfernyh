@@ -33,18 +33,17 @@
                 <div class="profile-avatar avatar-carousel" data-avatar-carousel data-interval="6500">
                     <div class="avatar-stage">
                         <div class="avatar-slide is-active" data-avatar-slide>
-                            <img src="src/assets/img/perfil.jpg" alt="Gabriel Fernandes" id="profileImg"
+                            <img src="src/assets/img/profileImg.jpeg" alt="Gabriel Fernandes foto 2"
                                 class="avatar-image">
                         </div>
                         <div class="avatar-slide" data-avatar-slide>
-                            <img src="src/assets/img/profileImg.jpeg" alt="Gabriel Fernandes foto 2"
-                                class="avatar-image">
+                            <img src="src/assets/img/perfil2.jpeg" alt="Gabriel Fernandes foto 2" class="avatar-image">
                         </div>
                     </div>
                     <span class="status-dot" title="Disponível para novos projetos"></span>
                 </div>
                 <h1>Gabbfernyh</h1>
-                <p>Desenvolvedor Front End</p>
+                <p>Desenvolvedor Web</p>
                 <small><i class="fa-solid fa-location-dot"></i> Diadema, São Paulo</small>
             </div>
 
@@ -71,25 +70,78 @@
 
         <section class="hub-content">
             <header class="hero-panel">
-                <p class="kicker">Resultado em primeiro lugar</p>
-                <h2>Interfaces que convertem</h2>
-                <p class="hero-copy">
-                    Hubs, landing pages e interfaces focadas em clareza, autoridade e decisão rápida.
-                </p>
-                <div class="hero-stats">
-                    <article>
-                        <strong>5+</strong>
-                        <span>Anos de experiência</span>
-                    </article>
-                    <article>
-                        <strong id="github-projects">0</strong>
-                        <span>Projetos no GitHub</span>
-                    </article>
-                    <article>
-                        <strong>100%</strong>
-                        <span>Foco em conversão</span>
-                    </article>
+                <div class="hero-copy-col">
+                    <p class="kicker">Hub digital</p>
+                    <h2>Interfaces com cara de marca e foco em conversao</h2>
+                    <p class="hero-copy">
+                        Hubs, landing pages e interfaces construidas para destacar valor, organizar a narrativa e
+                        conduzir a decisao com mais seguranca.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#projetos" class="btn btn-solid">Ver projetos</a>
+                        <a href="#formulario" class="btn btn-outline">Pedir proposta</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <article>
+                            <strong>5+</strong>
+                            <span>Anos de experiencia</span>
+                        </article>
+                        <article>
+                            <strong id="github-projects">0</strong>
+                            <span>Projetos no GitHub</span>
+                        </article>
+                        <article>
+                            <strong>100%</strong>
+                            <span>Foco em conversao</span>
+                        </article>
+                    </div>
+
+                    <div class="hero-badges">
+                        <span>Web design</span>
+                        <span>Branding</span>
+                        <span>Design</span>
+                        <span>Landing pages</span>
+                    </div>
                 </div>
+
+                <aside class="hero-spotlight">
+                    <article class="spotlight-card spotlight-feature">
+                        <span class="spotlight-label">Destaque</span>
+                        <div class="avatar-carousel" data-avatar-carousel data-interval="6500">
+
+                            <div class="avatar-stage">
+                                <div class="avatar-slide" data-avatar-slide>
+                                    <img src="src/assets/img/profileImg.jpeg" alt="Gabriel Fernandes"
+                                        class="spotlight-image ">
+                                </div>
+                                <div class="avatar-slide is-active" data-avatar-slide>
+                                    <img src="src/assets/img/perfil2.jpeg" alt="Gabriel Fernandes"
+                                        class="spotlight-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Gabbfernyh</strong>
+                            <p>Desenvolvedor Front End com foco em criar interfaces que geram confiança, clareza e
+                                conversão.</p>
+                        </div>
+                    </article>
+
+                    <div class="spotlight-stack">
+                        <article class="spotlight-card spotlight-mini">
+                            <span class="spotlight-label">Objetivo</span>
+                            <strong>Autoridade visual</strong>
+                            <p>Apresentacao mais premium, direta e alinhada com decisao comercial.</p>
+                        </article>
+                        <article class="spotlight-card spotlight-mini">
+                            <span class="spotlight-label">Entrega</span>
+                            <strong>Conteudo enxuto</strong>
+                            <p>Menos ruido, mais leitura, mais foco nos itens que fazem a pagina vender.</p>
+                        </article>
+                    </div>
+                </aside>
             </header>
 
             <section class="about-card" id="sobre">
@@ -104,6 +156,20 @@
                             clareza e conversão.</p>
                         <p>5+ anos desenvolvendo hubs comerciais, landing pages e interfaces profissionais. Cada
                             elemento tem propósito: reduzir atrito, destacar valor e facilitar a decisão.</p>
+                        <div class="about-signals">
+                            <article>
+                                <strong>Estrutura</strong>
+                                <span>Layout com leitura guiada.</span>
+                            </article>
+                            <article>
+                                <strong>Autoridade</strong>
+                                <span>Visual limpo e posicionamento claro.</span>
+                            </article>
+                            <article>
+                                <strong>Conversão</strong>
+                                <span>CTA e narrativa sem ruído.</span>
+                            </article>
+                        </div>
                     </div>
 
                     <aside class="about-focus">
@@ -134,7 +200,6 @@
             <section class="section-block" id="servicos">
                 <div class="section-title-row">
                     <h3>Soluções</h3>
-                    <p>Entregas focadas em resultado comercial.</p>
                 </div>
                 <div class="slider-shell" data-slider>
                     <button type="button" class="slider-arrow" data-prev aria-label="Anterior"><i
@@ -181,8 +246,11 @@
 
             <section class="section-block" id="projetos">
                 <div class="section-title-row">
-                    <h3>Projetos</h3>
-                    <p>Casos de sucesso em interfaces comerciais.</p>
+                    <div>
+                        <h3>Projetos</h3>
+                        <p>Casos de sucesso em interfaces comerciais.</p>
+                    </div>
+                    <span class="section-eyebrow">Vitrine selecionada</span>
                 </div>
                 <div class="slider-shell" data-slider>
                     <button type="button" class="slider-arrow" data-prev aria-label="Anterior"><i
@@ -209,7 +277,8 @@
                             </div>
                         </article> -->
                         <article class="project-card">
-                            <div class="project-thumb project-thumb-third" aria-hidden="true" data-thumb="portfolio"></div>
+                            <div class="project-thumb project-thumb-third" aria-hidden="true" data-thumb="portfolio">
+                            </div>
                             <div class="project-content">
                                 <span class="project-kicker">Portfólio</span>
                                 <h4>Portfólio Profissional</h4>
@@ -221,7 +290,8 @@
                             </div>
                         </article>
                         <article class="project-card">
-                            <div class="project-thumb project-thumb-commerce" aria-hidden="true" data-thumb="commerce"></div>
+                            <div class="project-thumb project-thumb-commerce" aria-hidden="true" data-thumb="commerce">
+                            </div>
                             <div class="project-content">
                                 <span class="project-kicker">E-commerce</span>
                                 <h4>Multi-Loja Centralizado</h4>
@@ -236,7 +306,8 @@
                             </div>
                         </article>
                         <article class="project-card">
-                            <div class="project-thumb project-thumb-landing" aria-hidden="true" data-thumb="landing"></div>
+                            <div class="project-thumb project-thumb-landing" aria-hidden="true" data-thumb="landing">
+                            </div>
                             <div class="project-content">
                                 <span class="project-kicker">Captação</span>
                                 <h4>Landing Premium</h4>
@@ -249,47 +320,21 @@
                         </article>
                         <article class="project-card">
                             <div class="col-span-full">
-                                <div class=" rounded-xl p-12 flex flex-col justify-center items-center text-center
-                transform transition-all duration-500 ease-in-out
-                hover:scale-[1.02] 
-                shadow-[0_10px_30px_rgba(34, 34, 34, 0.1)]
-                w-full mx-auto border border-white/10">
-
-                                    <div class="space-y-6 max-w-3xl">
-                                        <div class="w-24 h-24 mx-auto rounded-full
-                        bg-[#7bd88f]/10 dark:bg-[#97edaa]/20
-                        flex items-center justify-center
-                        border border-[#7bd88f]/20 dark:border-[#97edaa]/20">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="h-12 w-12 text-[#7bd88f] dark:text-[#97edaa]">
-                                                <path d="m18 16 4-4-4-4"></path>
-                                                <path d="m6 8-4 4 4 4"></path>
-                                                <path d="m14.5 4-5 16"></path>
-                                            </svg>
-                                        </div>
-
-                                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white">
-                                            Alguns projetos ainda faltam entrar
-                                        </h3>
-
-                                        <p class="text-lg text-gray-700 dark:text-gray-400 leading-relaxed">
-                                            Alguns projetos ainda estão sendo adicionados ao portfólio e entram em
-                                            breve.
-                                        </p>
-                                        <br>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">
-                                            Estou ajustando os próximos itens para publicar tudo com mais qualidade.
-                                            Para me acompanhar, siga-me no Instagram.
-                                        </p>
-                                        <p>
-                                            <a href="http://instagram.com/gabbfernyh.dev" target="_blank"
-                                                rel="noopener noreferrer">Acessar
-                                                Instagram <i class="fa fa-share-square" aria-hidden="true"></i></a>
-                                        </p>
-                                    </div>
+                                <div class="project-coming-soon">
+                                    <span class="project-kicker">Em andamento</span>
+                                    <h3>Mais projetos entram em breve</h3>
+                                    <p>
+                                        Esta area segue crescendo com novos estudos, ajustes visuais e trabalhos
+                                        comerciais para compor o portefolio.
+                                    </p>
+                                    <p class="project-coming-note">
+                                        Estou organizando os proximos itens para publicar tudo com mais qualidade. Para
+                                        acompanhar, siga no Instagram.
+                                    </p>
+                                    <a href="http://instagram.com/gabbfernyh.dev" target="_blank"
+                                        rel="noopener noreferrer" class="project-inline-link">
+                                        Acessar Instagram <i class="fa fa-share-square" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             </div>
                         </article>
